@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+@theme {
+  --color-navy: #00204E;
+  --color-gold: #D4AF37;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-navy text-white font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold uppercase tracking-tight;
+  }
+  
+  .blueprint-bg {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background-color: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  .page-sheet {
+    width: 297mm;
+    height: 210mm;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin: 0;
+    padding: 0;
+    box-shadow: none !important;
+  }
+  
+  .page-sheet:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .preview-container {
+    transform: none !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Screen styles for the page sheet */
+@media screen {
+  .page-sheet {
+    width: 297mm;
+    height: 210mm;
+    transform-origin: top center;
+  }
+
+  .preview-container {
+    transform: scale(var(--preview-scale));
+    transform-origin: top center;
+    margin-bottom: var(--preview-margin-bottom);
+  }
+}
